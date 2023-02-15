@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .car{
+            width: 50px;
+            height: 115px;
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            text-align: center;
+            transform: rotate(180deg);
+        }
+        .perform{
+            display: none;
+        }
+        .park{
+            box-sizing: border-box;
+            width: 80px;
+            height: 80px;
+            border-bottom: 5px solid #333;
+            border-left: 5px solid #333;
+            border-right: 5px solid #333;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+        }
+   
+    </style>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script>
+    $(function(){
+        document.addEventListener('keydown',function(e){
+            let ecode = e.keyCode;
+            // console.log(ecode);
+      
+            switch(ecode){
+                case 37: 
+                $('.perform').show();
+                $('.car')
+                    .css({
+                    transform: "rotate(-90deg)"
+                })
+                .stop()
+                .animate({
+                    left : '-=200px'
+                },500 , function(){
+                    $('.perform').hide();
+                });
+                break;
+
+                case 38 :
+                $('.perform').show();
+                $('.car').css({
+                    transform: "rotate(0deg)"
+
+                })
+                .stop()
+                .animate({
+                    top : '-=200px'
+                },500 , function(){
+                    $('.perform').hide();
+                });
+                break;
+
+                    
+                case 39: 
+                $('.perform').show();
+                    $('.car').css({
+                    transform: "rotate(90deg)"
+                })
+                .stop()
+                .animate({
+                    left : '+=200px'
+                },500 , function(){
+                    $('.perform').hide();
+                });
+                break;
+
+                case 40:
+                $('.perform').show();
+                    $('.car').css({
+                    transform: "rotate(180deg)"
+                })
+                .stop()
+                .animate({
+                    top : '+=200px' // 애니메이트는 left와 top만 있다. 
+                },500 , function(){
+                    $('.perform').hide();
+                });
+                break;
+
+                default:
+                alert('화살표 키로 작동이 가능합니다.');    
+            }
+        });
+    });
+
+    </script>
+</head>
+<body>
+    <div class="car">
+        <img src="car.png" alt="차">
+        <img src="bang.gif" alt="매연" class="perform">
+    </div>
+    <div class="park">
+    </div>
+</body>
+</html>
